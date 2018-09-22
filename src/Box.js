@@ -31,7 +31,7 @@ class Box extends Component {
         console.log('State was set', this.state.quotes.quotes[1].quote);
       });
 
-    //console.log(this.state.quotes);
+   
   }
   handleNewQuote() {
     console.log('hey');
