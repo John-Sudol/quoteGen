@@ -1,9 +1,6 @@
-.roboto {
+.indie {
   font-family: 'Indie Flower', cursive;
   font-size: 1.5em;
-}
-
-.roboto p {
 }
 
 .centerMe {
@@ -12,4 +9,15 @@
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+  
+}
+body, button{
+  background-color: aqua;
+}
+#quote-box {
+background-color:white;
+color:aqua;
+}
+button{
+  color: white ;
 }

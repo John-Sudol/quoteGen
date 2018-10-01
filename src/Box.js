@@ -10,9 +10,11 @@ class Box extends Component {
     this.state = {
       quotes: [],
       counter: 1,
-      loading: true
+      loading: true,
+      color:'',
     };
     this.handleNewQuote = this.handleNewQuote.bind(this);
+    this.handleNewColor = this.handleNewColor.bind(this);
   }
   componentDidMount() {
     fetch(
@@ -27,12 +29,14 @@ class Box extends Component {
         });
         console.log('Counter before ', this.state.counter);
         this.handleNewQuote();
+        
         console.log('Counter after ', this.state.counter);
         console.log('State was set', this.state.quotes.quotes[1].quote);
       });
 
    
   }
+  
   handleNewQuote() {
     console.log('hey');
 
@@ -44,23 +48,41 @@ class Box extends Component {
     });
   }
 
+  handleNewColor(){
+    let color;
+    color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    console.log(color);
+    this.setState({
+      color:color,
+    })
+  }
+
   render() {
     if (this.state.loading === true) {
-      return <h1>Loading</h1>;
+      return (
+       <div>
+        <h1>Loading</h1>
+       </div>
+      )
     }
-    return (
-      <div id="quote-box" className="centerMe roboto ba dib">
-        <p id="text" className="tc">
-          " {this.state.quotes.quotes[this.state.counter].quote} "
-        </p>
-        <p id="author" className="tr pr4">
-          - {this.state.quotes.quotes[this.state.counter].author}
-        </p>
-        <div className="pa3 flex justify-between">
-          <Button onToggleQuote={this.handleNewQuote} />
+    let quote = this.state.quotes.quotes[this.state.counter].quote;
+    let author = this.state.quotes.quotes[this.state.counter].author;
+    let color = {
+      color: this.state.color,
+    };
+    return(
+      <div >
+        <div id="quote-box" className={"centerMe indie ba dib"} style={ color }>
+          <p id="text" className="tc">
+            "{quote}"
+          </p>
+          <p id="author" className="tr pr4">
+            - {author}
+          </p>
+          <Button quote={quote} author={author} onToggleQuote={this.handleNewQuote} onToggleColor={this.handleNewColor} />
         </div>
       </div>
-    );
+    )
   }
 }
 export default Box;
